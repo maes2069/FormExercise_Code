@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/stylesheet.css">
+    <title>Request Form</title>
+</head>
+<body>
+    <h1> Technical Request Form</h1>
+    <p> Please complete the form below for assistance with technical issues.</p>
+
+    {% if success_message %}
+        <p id="success_message">{{ success_message }}</p>
+    {% endif %} 
+
+    <!-- Build the intake form -->
+    <form id="requestForm" action="/submit" method="post" target="_self">
+        <label for="email"> Email:</label><br>
+        <input type="text" id="email" name="email">
+            <!-- could also use type="email" for @ email validation -->
+        <br><br> 
+        <label for="description"> Description:</label><br>
+        <textarea id="description" name="description"></textarea>
+        <div id="charCount">Characters left: <span id="charRemaining">1000</span></div>
+        <br><br>
+        <label for="dueDate"> Due Date:</label><br>
+        <input type="date" id="dueDate" name="dueDate">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p><a href="/reqList">See list of requests (Internal Only)</a></p>
+    <!-- added a link for testing and demo, no ideal for customer UI -->
+
+    </div>
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+<!-- Javascript for input validations -->
+    <script>
+        document.getElementById('requestForm').addEventListener('submit', function(event){
+            var email = document.getElementById('email').value;
+            var desc = document.getElementById('description').value;
+            var dueDate = document.getElementById('dueDate').value;
+            
+            // Valid email regex requirements
+            var emailPattern = /.+@.+/;
+            
+            // Length requirements
+            var minEmailLength = 5;  
+            var maxEmailLength = 100;  
+            var minDescLength = 100;
+            var maxDescLength = 1000;
+            
+            // Date requirements
+            var currentDate = new Date();
+            var dueDateObj = new Date(dueDate);
+            var oneYearFromNow = new Date();
+            oneYearFromNow.setFullYear(currentDate.getFullYear() + 1);
+
+            // Email validation
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                event.preventDefault(); // Prevent form submission 
+            } 
+            // Length validations
+            if (email.length < minEmailLength) {
+                alert('Email address is too short. Minimum length is ' + minEmailLength + ' characters.');
+                event.preventDefault(); // Prevent form submission
+            } 
+            if (email.length > maxEmailLength) {
+                alert('Email address is too long. Maximum length is ' + maxEmailLength + ' characters.');
+                event.preventDefault(); // Prevent form submission
+            }
+            if (desc.length < minDescLength){
+                alert('Description is too short. Minimum lenth is ' + minDescLength + ' characters.')
+                event.preventDefault(); // Prevent form submission
+            } 
+            if (desc.length > maxDescLength){
+                alert('Description is too long. Maximum lenth is ' + maxDescLength + ' characters.')
+                event.preventDefault(); // Prevent form submission
+            } 
+            // Due date validations
+            if (!dueDate) {
+                alert('Please enter a due date.');
+                event.preventDefault(); // Prevent form submission
+            } 
+            if (dueDateObj <= currentDate) {
+                alert('The due date must be in the future.');
+                event.preventDefault(); // Prevent form submission
+            } 
+            if (dueDateObj > oneYearFromNow) {
+                alert('The due date must be no more than one year from today.');
+                event.preventDefault(); // Prevent form submission
+            }
+        } );
+    </script>
+
+<!-- javacript for character counter -->
+    <script>
+        document.getElementById('description').addEventListener('input', function() {
+            var maxLength = 1000; // Max chars allowed
+            var currentLength = this.value.length; // Current length of text
+            // Update count display
+            document.getElementById('charRemaining').textContent = maxLength - currentLength;
+
+        });
+    </script>
+
+</body>
+</html>

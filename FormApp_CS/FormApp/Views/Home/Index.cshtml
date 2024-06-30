@@ -1,0 +1,61 @@
+﻿@model FormApp.Models.RequestModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request Form</title>
+</head>
+<body>
+    <h1>Technical Request Form</h1>
+    <p>Please complete the form below for assistance with technical issues.</p>
+
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <p id="success_message">@ViewBag.SuccessMessage</p>
+    }
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="error">@ViewBag.ErrorMessage</div>
+    }
+
+    <form id="requestForm" asp-action="Form" method="post">
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email" value="@Model?.Email">
+        <p class="text-danger">@Html.ValidationMessageFor(model => model.Email)</p>
+        <br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description">@Model?.Description</textarea>
+        <div id="charCount">Characters left: <span id="charRemaining">1000</span></div><br>
+        <p class="text-danger">@Html.ValidationMessageFor(model => model.Description)</p>
+        <br><br>
+
+        <label for="dueDate">Due Date:</label><br>
+        <input type="date" id="dueDate" name="dueDate" value="@Model?.DueDate.ToString("yyyy-MM-dd")">
+        <p class="text-danger">@Html.ValidationMessageFor(model => model.DueDate)</p>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    @* <p><a href="/RequestList">See list of requests (Internal Only)</a></p> *@
+    <a asp-controller="Home" asp-action="RequestList">See list of requests (Internal Only)</a>
+
+
+<!-- javacript for character counter -->
+    <script>
+        document.getElementById('description').addEventListener('input', function() {
+            var maxLength = 1000; // Max chars allowed
+            var currentLength = this.value.length; // Current length of text
+            // Update count display
+            document.getElementById('charRemaining').textContent = maxLength - currentLength;
+
+        });        
+    </script>
+
+
+</body>
+</html>
