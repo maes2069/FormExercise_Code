@@ -74,7 +74,7 @@ This application leverages Flask as the backend framework and MySQL as the datab
 # Install virtualenv (if not installed)
 pip install virtualenv
 
-# Create and navigate to project directory
+# Navigate to project directory
 cd /path/to/your/project
 
 # Create virtual environment
