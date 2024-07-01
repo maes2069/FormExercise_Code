@@ -1,5 +1,5 @@
 # Overview
-This repository contains two different applications for an online intake form with UI. 
+This repository contains two different applications for a tech support intake form.
 
 To access the C# application README, click [here](FormApp_CS/README.md).
 
