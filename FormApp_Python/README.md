@@ -67,6 +67,7 @@ This application leverages Flask as the backend framework and MySQL as the datab
 ### Prerequisites
 - Install MySQL
 - Install virtualevn
+- Install Python
 - Install Flask
 
 ### Commands
@@ -85,7 +86,10 @@ source venv/bin/activate  # On macOS/Linux
 venv\Scripts\activate     # On Windows
 
 # Install dependencies
+brew install python
+pip install flask
 pip install Flask mysql-connector-python
+
 
 # Start MySQL service
 brew services start mysql # On macOS
