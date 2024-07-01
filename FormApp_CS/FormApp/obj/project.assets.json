@@ -4788,11 +4788,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/margaritaespinoza/Documents/VSCode_Files/FormExercise/FormCode_CS/FormApp/FormApp.csproj",
+      "projectUniqueName": "/Users/margaritaespinoza/Documents/VSCode_Files/FormExercise/FormApp_CS/FormApp/FormApp.csproj",
       "projectName": "FormApp",
-      "projectPath": "/Users/margaritaespinoza/Documents/VSCode_Files/FormExercise/FormCode_CS/FormApp/FormApp.csproj",
+      "projectPath": "/Users/margaritaespinoza/Documents/VSCode_Files/FormExercise/FormApp_CS/FormApp/FormApp.csproj",
       "packagesPath": "/Users/margaritaespinoza/.nuget/packages/",
-      "outputPath": "/Users/margaritaespinoza/Documents/VSCode_Files/FormExercise/FormCode_CS/FormApp/obj/",
+      "outputPath": "/Users/margaritaespinoza/Documents/VSCode_Files/FormExercise/FormApp_CS/FormApp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/margaritaespinoza/.nuget/NuGet/NuGet.Config"
